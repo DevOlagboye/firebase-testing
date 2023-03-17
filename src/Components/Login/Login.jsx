@@ -48,9 +48,6 @@ const Login = () => {
         placeholder="Input Password"
         onChange={(event) => handleInput(event)}
       />
-      {/* Login Details:
-      akingbolaola@gmail.com
-      Akingbola */}
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={handleSignIn}>SignIn</button>
       <button onClick={logOut}>Logout</button>
