@@ -1,13 +1,40 @@
 import React, { useState } from "react";
-import "./Login.css"
+import "./Login.css";
+import { app } from "./firebaseConfig";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 const Login = () => {
+  let auth = getAuth();
   const [data, setData] = useState([]);
   const handleInput = (event) => {
     let newInput = { [event.target.name]: event.target.value };
 
     setData({ ...data, ...newInput });
   };
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    createUserWithEmailAndPassword(auth, data.email, data.password)
+      .then((response) => {
+        console.log(response.user);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const handleSignIn = () => {
+    signInWithEmailAndPassword(auth, data.email, data.password)
+      .then((response) => {
+        console.log(response.user);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
+  };
+  const logOut = () =>{
+   setData(false)
+  }
   return (
     <div className="login-container">
       <input
@@ -21,7 +48,13 @@ const Login = () => {
         placeholder="Input Password"
         onChange={(event) => handleInput(event)}
       />
-      <button>Submit</button>
+      {/* Login Details:
+      akingbolaola@gmail.com
+      Akingbola */}
+      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSignIn}>SignIn</button>
+      <button onClick={logOut}>Logout</button>
+      {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
   );
 };
