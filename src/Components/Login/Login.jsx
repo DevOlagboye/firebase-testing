@@ -21,6 +21,7 @@ const Login = () => {
         placeholder="Input Password"
         onChange={(event) => handleInput(event)}
       />
+      <button>Submit</button>
     </div>
   );
 };
