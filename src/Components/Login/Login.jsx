@@ -13,7 +13,6 @@ const Login = () => {
   const navigate = useNavigate();
   const handleInput = (event) => {
     let newInput = { [event.target.name]: event.target.value };
-
     setData({ ...data, ...newInput });
   };
   const handleSubmit = () => {
