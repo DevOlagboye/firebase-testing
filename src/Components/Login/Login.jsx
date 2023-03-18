@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
+
 const Login = () => {
   let auth = getAuth();
   const [data, setData] = useState([]);
