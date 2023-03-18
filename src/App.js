@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./Components/Login/Login";
 import LoggedIn from "./Components/LoggedIn/LoggedIn";
 import { createContext } from "react";
+const MyContext = createContext()
 
 function App() {
   return (
