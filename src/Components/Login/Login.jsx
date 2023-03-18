@@ -38,9 +38,6 @@ const Login = () => {
         alert(err.message);
       });
   };
-  const logOut = () =>{
-   setData(false)
-  }
   return (
     <div className="login-container">
       <input
@@ -56,7 +53,6 @@ const Login = () => {
       />
       <button onClick={handleSubmit}>Submit</button>
       <button onClick={handleSignIn}>SignIn</button>
-      <button onClick={logOut}>Logout</button>
       {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
   );
