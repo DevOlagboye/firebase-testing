@@ -9,12 +9,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Routes>
-          <UserContext.Provider value="Hello from Context">
+      <UserContext.Provider value="Hello from Context">
+        <Routes> 
           <Route exact path="/" element={<Login />} />
           <Route exact path="/loggedIn" element={<LoggedIn />} />
-          </UserContext.Provider>
         </Routes>
+        </UserContext.Provider>
       </Router>
     </div>
   );
