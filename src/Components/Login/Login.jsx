@@ -1,4 +1,5 @@
-import React, { useState, useNavigate } from "react";
+import React, { useState } from "react";
+import {useNavigate} from "react-router-dom"
 import "./Login.css";
 import { app } from "./firebaseConfig";
 import {
@@ -9,12 +10,14 @@ import {
 const Login = () => {
   let auth = getAuth();
   const [data, setData] = useState([]);
+  const navigate = useNavigate();
   const handleInput = (event) => {
     let newInput = { [event.target.name]: event.target.value };
 
     setData({ ...data, ...newInput });
   };
   const handleSubmit = () => {
+    
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
         console.log(response.user);
@@ -27,6 +30,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
         console.log(response.user);
+        navigate("/loggedIn")
       })
       .catch((err) => {
         alert(err.message);
