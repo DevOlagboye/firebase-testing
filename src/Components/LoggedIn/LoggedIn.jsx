@@ -7,7 +7,6 @@ const LoggedIn = () => {
     const logOut = () =>{
         setData(false)
        }
-
   return (
     <div>
         <h5>LoggedIn</h5>
