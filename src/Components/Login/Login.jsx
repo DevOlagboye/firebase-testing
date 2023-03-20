@@ -42,8 +42,14 @@ const Login = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
         console.log(response.user);
-        navigate("/loggedIn")
-        loginSuccess()
+        messageApi.open({
+            type: 'loading',
+            content: 'Confirming Details...',
+            duration: 1.5,
+        })
+        .then(() => message.success('Login Successful', 1.5))
+        .then(()=> navigate("/loggedIn"))
+        
       })
       .catch((err) => {
         alert(err.message);
