@@ -1,5 +1,5 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../UserContext";
 
@@ -10,9 +10,18 @@ const LoggedIn = () => {
     setData(false);
     navigate("/");
   };
+  useEffect(() => {
+    if (data) {
+      navigate("/", { replace: true });
+    }
+  });
   return (
     <div>
-      {data ? <h5>LoggedIn</h5>: <h5>You need to kindly Login to reach Here</h5>}
+      {data ? (
+        <h5>LoggedIn</h5>
+      ) : (
+        <h5>You need to kindly Login to reach Here</h5>
+      )}
       {data ? <button onClick={logOut}>Logout</button> : <button>Test</button>}
     </div>
   );
