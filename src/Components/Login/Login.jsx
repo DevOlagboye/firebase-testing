@@ -7,6 +7,8 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup
 } from "firebase/auth";
 import { useContext } from "react";
 import { UserContext } from "../../UserContext";
@@ -14,6 +16,7 @@ import { UserContext } from "../../UserContext";
 const Login = () => {
     const {data, setData} = useContext(UserContext)
   let auth = getAuth();
+  let goggleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage()
   const handleInput = (event) => {
@@ -46,6 +49,9 @@ const Login = () => {
         alert(err.message);
       });
   };
+  const signUpWithGoogle = () =>{
+    signInWithPopup(auth, goggleProvider)
+  }
   return (
     <div className="login-container">
       <input
@@ -59,9 +65,10 @@ const Login = () => {
         placeholder="Input Password"
         onChange={(event) => handleInput(event)}
       />
-      <button onClick={handleSubmit}>Submit</button>
+      <button onClick={handleSubmit}>Register</button>
       {contextHolder}
       <button onClick={handleSignIn}>SignIn</button>
+      <button onClick={signUpWithGoogle }>SignIn with Goggle</button>
     </div>
   );
 };
