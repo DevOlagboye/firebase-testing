@@ -15,8 +15,7 @@ const Login = () => {
     const {data, setData} = useContext(UserContext)
   let auth = getAuth();
   const navigate = useNavigate();
-  const [messageApi, contextHolder] = message.useMessage
-
+  const [messageApi, contextHolder] = message.useMessage()
   const loginSuccess = () =>{
     messageApi.open({
         type: 'loading',
@@ -42,8 +41,8 @@ const Login = () => {
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
-        loginSuccess()
         console.log(response.user);
+        loginSuccess()
         navigate("/loggedIn")
       })
       .catch((err) => {
@@ -52,6 +51,7 @@ const Login = () => {
   };
   return (
     <div className="login-container">
+        {contextHolder}
       <input
         name="email"
         placeholder="Input Email"
@@ -64,7 +64,6 @@ const Login = () => {
         onChange={(event) => handleInput(event)}
       />
       <button onClick={handleSubmit}>Submit</button>
-      {contextHolder}
       <button onClick={handleSignIn}>SignIn</button>
       {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
