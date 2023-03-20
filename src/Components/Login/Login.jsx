@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {message} from 'antd'
 import {useNavigate} from "react-router-dom"
 import "./Login.css";
 import { app } from "./firebaseConfig";
@@ -14,6 +15,16 @@ const Login = () => {
     const {data, setData} = useContext(UserContext)
   let auth = getAuth();
   const navigate = useNavigate();
+  const [messageApi, contextHolder] = message.useMessage
+
+  const loginSuccess = () =>{
+    messageApi.open({
+        type: 'loading',
+        content: 'Confirming Details...',
+        duration: 1,
+    })
+    .then(() => message.success('Login Successful', 1))
+  }
   const handleInput = (event) => {
     let newInput = { [event.target.name]: event.target.value };
     setData({ ...data, ...newInput });
@@ -31,6 +42,7 @@ const Login = () => {
   const handleSignIn = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
+        loginSuccess()
         console.log(response.user);
         navigate("/loggedIn")
       })
@@ -52,6 +64,7 @@ const Login = () => {
         onChange={(event) => handleInput(event)}
       />
       <button onClick={handleSubmit}>Submit</button>
+      {contextHolder}
       <button onClick={handleSignIn}>SignIn</button>
       {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
