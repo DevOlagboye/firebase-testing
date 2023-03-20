@@ -51,7 +51,6 @@ const Login = () => {
   };
   return (
     <div className="login-container">
-        {contextHolder}
       <input
         name="email"
         placeholder="Input Email"
