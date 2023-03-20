@@ -22,7 +22,7 @@ const Login = () => {
     
     createUserWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
-        console.log(response.user);
+        console.log(response.user.email);
       })
       .catch((err) => {
         alert(err.message);
