@@ -40,7 +40,7 @@ const Login = () => {
             duration: 1.5,
         })
         .then(() => message.success('Login Successful', 1.5))
-        .then(()=> navigate("/loggedIn"))     
+        .then(()=> navigate("/loggedIn"))   
       })
       .catch((err) => {
         alert(err.message);

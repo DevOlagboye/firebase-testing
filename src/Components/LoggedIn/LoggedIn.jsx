@@ -10,15 +10,15 @@ const LoggedIn = () => {
     setData(false);
     navigate("/");
   };
-  useEffect(() => {
-    if (!data) {
-      navigate("/", { replace: true });
-    }
-  });
+//   useEffect(() => {
+//     if (!data) {
+//       navigate("/", { replace: true });
+//     }
+//   });
   return (
     <div>
       {data ? (
-        <h5>loggedIn</h5>
+        <h5>LoggedIn</h5>
       ) : (
         <h5>You need to kindly Login to reach Here</h5>
       )}
