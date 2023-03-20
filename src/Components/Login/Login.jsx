@@ -16,14 +16,6 @@ const Login = () => {
   let auth = getAuth();
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage()
-  const loginSuccess = () =>{
-    messageApi.open({
-        type: 'loading',
-        content: 'Confirming Details...',
-        duration: 1,
-    })
-    .then(() => message.success('Login Successful', 1))
-  }
   const handleInput = (event) => {
     let newInput = { [event.target.name]: event.target.value };
     setData({ ...data, ...newInput });
@@ -48,8 +40,7 @@ const Login = () => {
             duration: 1.5,
         })
         .then(() => message.success('Login Successful', 1.5))
-        .then(()=> navigate("/loggedIn"))
-        
+        .then(()=> navigate("/loggedIn"))     
       })
       .catch((err) => {
         alert(err.message);

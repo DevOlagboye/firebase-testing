@@ -7,11 +7,11 @@ const LoggedIn = () => {
   const { data, setData } = useContext(UserContext);
   const navigate = useNavigate();
   const logOut = () => {
-    setData(false);
+    setData(false)
     navigate("/");
   };
   useEffect(() => {
-    if (data) {
+    if (!data) {
       navigate("/", { replace: true });
     }
   });
