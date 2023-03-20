@@ -71,7 +71,6 @@ const Login = () => {
       <button onClick={handleSubmit}>Submit</button>
       {contextHolder}
       <button onClick={handleSignIn}>SignIn</button>
-      {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
   );
 };
