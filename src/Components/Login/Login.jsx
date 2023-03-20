@@ -42,8 +42,8 @@ const Login = () => {
     signInWithEmailAndPassword(auth, data.email, data.password)
       .then((response) => {
         console.log(response.user);
-        loginSuccess()
         navigate("/loggedIn")
+        loginSuccess()
       })
       .catch((err) => {
         alert(err.message);
@@ -63,6 +63,7 @@ const Login = () => {
         onChange={(event) => handleInput(event)}
       />
       <button onClick={handleSubmit}>Submit</button>
+      {contextHolder}
       <button onClick={handleSignIn}>SignIn</button>
       {data ? <span>LoggedIn</span> : <span>SignIn</span>}
     </div>
