@@ -7,7 +7,7 @@ const LoggedIn = () => {
   const { data, setData } = useContext(UserContext);
   const navigate = useNavigate();
   const logOut = () => {
-    setData(false)
+    setData(false);
     navigate("/");
   };
   useEffect(() => {
@@ -18,7 +18,7 @@ const LoggedIn = () => {
   return (
     <div>
       {data ? (
-        <h5>LoggedIn</h5>
+        <h5>loggedIn</h5>
       ) : (
         <h5>You need to kindly Login to reach Here</h5>
       )}
