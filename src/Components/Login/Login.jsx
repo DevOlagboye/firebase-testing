@@ -68,7 +68,7 @@ const Login = () => {
       <button onClick={handleSubmit}>Register</button>
       {contextHolder}
       <button onClick={handleSignIn}>Login</button>
-      <button onClick={signUpWithGoogle }>SignIn with Goggle</button>
+      <button onClick={signUpWithGoogle }>Login with Goggle</button>
     </div>
   );
 };
