@@ -12,9 +12,7 @@ const LoggedIn = () => {
     navigate("/");
   };
   useEffect(() => {
-     if (!data) {
-       navigate("/", { replace: true });
-    }
+     console.log(loggedIn)
    });
   return (
     <div>
