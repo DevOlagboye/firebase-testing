@@ -7,7 +7,7 @@ import { UserContext, logInContext } from "./UserContext";
 
 function App() {
   const [data, setData] = useState([]);
-  const [loggedIn, setLoggedIn] = useState()
+  const [loggedIn, setLoggedIn] = useState(false)
   return (
     <div className="App">
       <Router>
