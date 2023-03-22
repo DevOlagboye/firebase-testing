@@ -8,11 +8,13 @@ const LoggedIn = () => {
   const {loggedIn, setLoggedIn} = useContext(logInContext)
   const navigate = useNavigate();
   const logOut = () => {
-    setData(false);
     navigate("/");
+    setData(false)
   };
   useEffect(() => {
-     console.log(loggedIn)
+     if (!loggedIn ) {
+       navigate("/", { replace: true });
+    }
    });
   return (
     <div>
