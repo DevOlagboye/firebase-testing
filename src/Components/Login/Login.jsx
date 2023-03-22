@@ -11,10 +11,11 @@ import {
   signInWithPopup
 } from "firebase/auth";
 import { useContext } from "react";
-import { UserContext } from "../../UserContext";
+import { logInContext, UserContext } from "../../UserContext";
 
 const Login = () => {
     const {data, setData} = useContext(UserContext)
+    const {loggedIn, setLoggedIn} = useContext(logInContext)
   let auth = getAuth();
   let goggleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
