@@ -10,9 +10,8 @@ const LoggedIn = () => {
   const navigate = useNavigate();
   const logOut = () => {
     setLoggedIn(false)
-    navigate("/");
-    console.log(loggedIn)
   };
+  
   useEffect(() => {
      if (!loggedIn ) {
         navigate("/", { replace: true });
