@@ -1,20 +1,23 @@
 import React from "react";
+import { useState } from "react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
 
 const LoggedIn = () => {
   const { data, setData } = useContext(UserContext);
-  const {loggedIn, setLoggedIn} = useContext(logInContext)
+  const [loggedIn, setLoggedIn] = useContext(logInContext)
   const navigate = useNavigate();
   const logOut = () => {
     navigate("/");
     setData(false)
   };
   useEffect(() => {
-     if (!loggedIn ) {
-       navigate("/", { replace: true });
-    }
+    setLoggedIn(true)
+    console.log(loggedIn)
+    //  if (!loggedIn ) {
+    //    navigate("/", { replace: true });
+    // }
    });
   return (
     <div>

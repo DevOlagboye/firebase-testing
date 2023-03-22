@@ -12,7 +12,7 @@ function App() {
     <div className="App">
       <Router>
       <UserContext.Provider value={{data, setData}}>
-        <logInContext.Provider value={{loggedIn, setLoggedIn}}>
+        <logInContext.Provider value={[loggedIn, setLoggedIn]}>
         <Routes> 
           <Route exact path="/" element={<Login />} />
           <Route exact path="/loggedIn" element={<LoggedIn />} />
