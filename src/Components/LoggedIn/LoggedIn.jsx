@@ -1,20 +1,21 @@
 import React from "react";
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../UserContext";
+import { UserContext, logInContext } from "../../UserContext";
 
 const LoggedIn = () => {
   const { data, setData } = useContext(UserContext);
+  const {loggedIn, setLoggedIn} = useContext(logInContext)
   const navigate = useNavigate();
   const logOut = () => {
     setData(false);
     navigate("/");
   };
-//   useEffect(() => {
-//     if (!data) {
-//       navigate("/", { replace: true });
-//     }
-//   });
+  useEffect(() => {
+     if (!data) {
+       navigate("/", { replace: true });
+    }
+   });
   return (
     <div>
       {data ? (
