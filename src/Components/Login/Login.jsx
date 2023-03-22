@@ -45,7 +45,7 @@ const Login = () => {
         })
         .then(() => message.success('Login Successful', 1.5))
         .then(()=> navigate("/loggedIn"))   
-        .then(() => console.log(setLoggedIn(true)))
+        .then(() => console.log(loggedIn))
       })
       .catch((err) => {
         alert(err.message);
