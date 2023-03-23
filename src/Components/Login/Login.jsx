@@ -48,7 +48,16 @@ const Login = () => {
           .then(() => navigate("/loggedIn"));
       })
       .catch((err) => {
-        alert(err.message);
+        if(err.message){
+            messageApi
+          .open({
+            type: "loading",
+            content: "Confirming Details...",
+            duration: 1,
+          })
+          .then(() => message.error("Login Error", 1))
+        }
+        console.log(err.message)
       });
   };
   const signUpWithGoogle = () => {
