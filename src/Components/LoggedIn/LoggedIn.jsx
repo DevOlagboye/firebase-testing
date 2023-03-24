@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { message } from "antd";
 import { useContext, useEffect } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
@@ -14,7 +14,7 @@ const LoggedIn = () => {
     try {
       await signOut(auth);
       console.log("Logged Out");
-      navigate("/")
+      navigate("/");
     } catch (err) {
       console.log(err);
     }
