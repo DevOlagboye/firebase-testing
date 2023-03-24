@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
 import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Login/firebaseConfig";
-import "../Login/Login.css"
+import "../Login/Login.css";
 import verified from "../../images/verified.png";
+import nonVerified from "../../images/non-verified.svg"
 
 const LoggedIn = () => {
   let auth = getAuth();
@@ -61,19 +62,23 @@ const LoggedIn = () => {
     <div>
       <h5>LoggedIn as {auth?.currentUser?.email}</h5>
       <div>
+        <h3>Movies Recently Watched By Me</h3>
         {moviesList.map((movie) => (
           <div>
-            <h3>Movies Recently Watched By Me</h3>
             <h4>Movie Title: {movie.title}</h4>
-            <p>Released Date: {movie.releaseDate}</p>
             <p>
               Main Actor: {movie.actor}{" "}
               {movie.receivedAnOscar ? (
-                <img className="verified-icon" src={verified} alt="verified icon" />
+                <img
+                  className="verified-icon"
+                  src={verified}
+                  alt="verified icon"
+                />
               ) : (
-                <p>Didn't Receive an Oscar</p>
+                <img className="verified-icon" src={nonVerified} alt="Non Verified Icon"/>
               )}
             </p>
+            <p>Released Date: {movie.releaseDate}</p>
           </div>
         ))}
       </div>
