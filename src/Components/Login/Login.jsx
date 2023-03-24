@@ -45,6 +45,7 @@ const Login = () => {
           })
           .then(() => message.success("Login Successful", 1.5))
           .then(() => setLoggedIn(true))
+          .then(() => console.log(auth.currentUser.email))
           .then(() => navigate("/loggedIn"));
       })
       .catch((err) => {

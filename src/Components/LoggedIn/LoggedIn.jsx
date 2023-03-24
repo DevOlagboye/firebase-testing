@@ -14,6 +14,7 @@ const LoggedIn = () => {
     try {
       await signOut(auth);
       console.log("Logged Out");
+      navigate("/")
     } catch (err) {
       console.log(err);
     }
