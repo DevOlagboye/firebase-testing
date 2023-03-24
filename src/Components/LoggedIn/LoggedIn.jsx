@@ -4,6 +4,7 @@ import { useContext, useEffect } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
+import { db } from "../Login/firebaseConfig";
 
 const LoggedIn = () => {
   let auth = getAuth();

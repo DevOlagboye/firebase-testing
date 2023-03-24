@@ -15,7 +15,7 @@ import { logInContext, UserContext } from "../../UserContext";
 
 const Login = () => {
   const { data, setData } = useContext(UserContext);
-  const  [loggedIn, setLoggedIn] = useContext(logInContext);
+  const [loggedIn, setLoggedIn] = useContext(logInContext);
   let auth = getAuth();
   let goggleProvider = new GoogleAuthProvider();
   const navigate = useNavigate();
@@ -49,16 +49,16 @@ const Login = () => {
           .then(() => navigate("/loggedIn"));
       })
       .catch((err) => {
-        if(err.message){
-            messageApi
-          .open({
-            type: "loading",
-            content: "Confirming Details...",
-            duration: 1,
-          })
-          .then(() => message.error("Login Error", 1))
+        if (err.message) {
+          messageApi
+            .open({
+              type: "loading",
+              content: "Confirming Details...",
+              duration: 1,
+            })
+            .then(() => message.error("Login Error", 1));
         }
-        console.log(err.message)
+        console.log(err.message);
       });
   };
   const signUpWithGoogle = () => {
@@ -70,12 +70,14 @@ const Login = () => {
         name="email"
         placeholder="Input Email"
         onChange={(event) => handleInput(event)}
+        required
       />
       <input
         type="password"
         name="password"
         placeholder="Input Password"
         onChange={(event) => handleInput(event)}
+        required
       />
       <button onClick={handleSubmit}>Register</button>
       {contextHolder}
