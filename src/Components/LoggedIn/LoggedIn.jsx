@@ -43,15 +43,31 @@ const LoggedIn = () => {
       //SET THE MOVIE LIST = THE DATA
       try {
         const data = await getDocs(moviesCollectionRef);
-        console.log(data);
+        const filteredData = data.docs.map((doc) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setMoviesList(filteredData);
+        console.log(filteredData);
       } catch (err) {
         console.error(err);
       }
     };
+    getMovieList();
   }, []);
   return (
     <div>
-      <h5>LoggedIn as {auth.currentUser.email}</h5>
+      <h5>LoggedIn as {auth?.currentUser?.email}</h5>
+      <div>
+        {moviesList.map((movie) => (
+          <div>
+            <h3>Movies Recently Watched By Me</h3>
+            <h4>Movie Title: {movie.title}</h4>
+            <p>Released Date: {movie.releaseDate}</p>
+            <p>Main Actor: {movie.actor}</p>
+          </div>
+        ))}
+      </div>
       {contextHolder}
       {data ? <button onClick={logOut}>Logout</button> : <button>Test</button>}
     </div>
