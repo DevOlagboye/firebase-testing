@@ -6,13 +6,14 @@ import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
 
 const LoggedIn = () => {
-    let auth = getAuth()
+  let auth = getAuth();
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
   const navigate = useNavigate();
   const logOut = async () => {
     try {
       await signOut(auth);
+      console.log("Logged Out");
     } catch (err) {
       console.log(err);
     }
