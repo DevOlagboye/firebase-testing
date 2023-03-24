@@ -4,11 +4,13 @@ import { useContext, useEffect, useState } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
+import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Login/firebaseConfig";
 
 const LoggedIn = () => {
   let auth = getAuth();
   const [moviesList, setMoviesList] = useState([]);
+  const moviesCollectionRef = collection(db, "movies");
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
   const [messageApi, contextHolder] = message.useMessage();
@@ -34,14 +36,20 @@ const LoggedIn = () => {
     if (!loggedIn) {
       navigate("/", { replace: true });
     }
+    const getMovieList = async () => {
+      //READ THE DATA FROM DATABASE
+      //SET THE MOVIE LIST = THE DATA
+      try {
+        const data = await getDocs(moviesCollectionRef);
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
   }, []);
   return (
     <div>
-      {data ? (
-        <h5>LoggedIn as {auth.currentUser.email}</h5>
-      ) : (
-        <h5>You need to kindly Login to reach Here</h5>
-      )}
+      <h5>LoggedIn as {auth?.currentUser?.email}</h5>
       {contextHolder}
       {data ? <button onClick={logOut}>Logout</button> : <button>Test</button>}
     </div>
