@@ -1,22 +1,28 @@
 import React from "react";
 import { useState } from "react";
 import { useContext, useEffect } from "react";
+import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
 
 const LoggedIn = () => {
+    let auth = getAuth()
   const { data, setData } = useContext(UserContext);
-  const [loggedIn, setLoggedIn] = useContext(logInContext)
+  const [loggedIn, setLoggedIn] = useContext(logInContext);
   const navigate = useNavigate();
-  const logOut = () => {
-    setLoggedIn(false)
+  const logOut = async () => {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      console.log(err);
+    }
   };
-  
+
   useEffect(() => {
-     if (!loggedIn ) {
-        navigate("/", { replace: true });
- }
-   });
+    if (!loggedIn) {
+      navigate("/", { replace: true });
+    }
+  });
   return (
     <div>
       {data ? (
