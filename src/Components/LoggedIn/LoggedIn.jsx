@@ -35,6 +35,8 @@ const LoggedIn = () => {
   useEffect(() => {
     if (!loggedIn) {
       navigate("/", { replace: true });
+    } else {
+      console.log(loggedIn);
     }
     const getMovieList = async () => {
       //READ THE DATA FROM DATABASE
@@ -49,7 +51,7 @@ const LoggedIn = () => {
   }, []);
   return (
     <div>
-      <h5>LoggedIn as {auth?.currentUser?.email}</h5>
+      <h5>LoggedIn as {auth.currentUser.email}</h5>
       {contextHolder}
       {data ? <button onClick={logOut}>Logout</button> : <button>Test</button>}
     </div>
