@@ -9,6 +9,7 @@ const LoggedIn = () => {
   let auth = getAuth();
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
+  const [messageApi, contextHolder] = message.useMessage();
   const navigate = useNavigate();
   const logOut = async () => {
     try {
