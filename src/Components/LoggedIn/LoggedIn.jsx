@@ -28,7 +28,7 @@ const LoggedIn = () => {
   return (
     <div>
       {data ? (
-        <h5>LoggedIn</h5>
+        <h5>LoggedIn as {auth.currentUser.email}</h5>
       ) : (
         <h5>You need to kindly Login to reach Here</h5>
       )}
