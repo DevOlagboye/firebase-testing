@@ -32,7 +32,7 @@ const LoggedIn = () => {
     if (!loggedIn) {
       navigate("/", { replace: true });
     }
-  });
+  }, []);
   return (
     <div>
       {data ? (
