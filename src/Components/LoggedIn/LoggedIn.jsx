@@ -8,8 +8,7 @@ import { db } from "../Login/firebaseConfig";
 
 const LoggedIn = () => {
   let auth = getAuth();
-  const [moviesData, setMoviesData] = useState();
-
+  const [moviesList, setMoviesList] = useState([]);
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
   const [messageApi, contextHolder] = message.useMessage();
