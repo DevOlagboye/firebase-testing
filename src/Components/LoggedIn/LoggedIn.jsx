@@ -15,7 +15,14 @@ const LoggedIn = () => {
     try {
       await signOut(auth);
       console.log("Logged Out");
-      navigate("/");
+      messageApi
+        .open({
+          type: "loading",
+          content: "Redirecting...",
+          duration: 1.2,
+        })
+        .then(() => message.success("LogOut Successful", 1.2))
+        .then(() => navigate("/"))
     } catch (err) {
       console.log(err);
     }
@@ -33,6 +40,7 @@ const LoggedIn = () => {
       ) : (
         <h5>You need to kindly Login to reach Here</h5>
       )}
+      {contextHolder}
       {data ? <button onClick={logOut}>Logout</button> : <button>Test</button>}
     </div>
   );
