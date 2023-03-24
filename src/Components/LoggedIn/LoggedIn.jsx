@@ -19,10 +19,10 @@ const LoggedIn = () => {
         .open({
           type: "loading",
           content: "Redirecting...",
-          duration: 1.2,
+          duration: 1,
         })
-        .then(() => message.success("LogOut Successful", 1.2))
-        .then(() => navigate("/"))
+        .then(() => message.success("LogOut Successful", 1))
+        .then(() => navigate("/"));
     } catch (err) {
       console.log(err);
     }
