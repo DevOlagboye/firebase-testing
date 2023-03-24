@@ -1,6 +1,6 @@
 import React from "react";
 import { message } from "antd";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
@@ -8,6 +8,8 @@ import { db } from "../Login/firebaseConfig";
 
 const LoggedIn = () => {
   let auth = getAuth();
+  const [moviesData, setMoviesData] = useState();
+
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
   const [messageApi, contextHolder] = message.useMessage();

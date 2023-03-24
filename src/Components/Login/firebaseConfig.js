@@ -22,4 +22,3 @@ export const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 
 export const db = getFirestore(app);
-console.log(process.env.REACT_APP_API_KEY);
