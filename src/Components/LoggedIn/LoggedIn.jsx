@@ -8,7 +8,7 @@ import { getDocs, collection } from "firebase/firestore";
 import { db } from "../Login/firebaseConfig";
 import "../Login/Login.css";
 import verified from "../../images/verified.png";
-import nonVerified from "../../images/non-verified.svg"
+import nonVerified from "../../images/non-verified.svg";
 
 const LoggedIn = () => {
   let auth = getAuth();
@@ -34,6 +34,21 @@ const LoggedIn = () => {
       console.log(err);
     }
   };
+  const getMovieList = async () => {
+    //READ THE DATA FROM DATABASE
+    //SET THE MOVIE LIST = THE DATA
+    try {
+      const data = await getDocs(moviesCollectionRef);
+      const filteredData = data.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setMoviesList(filteredData);
+      console.log(filteredData);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   useEffect(() => {
     if (!loggedIn) {
@@ -41,21 +56,7 @@ const LoggedIn = () => {
     } else {
       console.log(loggedIn);
     }
-    const getMovieList = async () => {
-      //READ THE DATA FROM DATABASE
-      //SET THE MOVIE LIST = THE DATA
-      try {
-        const data = await getDocs(moviesCollectionRef);
-        const filteredData = data.docs.map((doc) => ({
-          ...doc.data(),
-          id: doc.id,
-        }));
-        setMoviesList(filteredData);
-        console.log(filteredData);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+    
     getMovieList();
   }, []);
   return (
@@ -75,7 +76,11 @@ const LoggedIn = () => {
                   alt="verified icon"
                 />
               ) : (
-                <img className="verified-icon" src={nonVerified} alt="Non Verified Icon"/>
+                <img
+                  className="verified-icon"
+                  src={nonVerified}
+                  alt="Non Verified Icon"
+                />
               )}
             </p>
             <p>Released Date: {movie.releaseDate}</p>
