@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
-import { getDocs, collection } from "firebase/firestore";
+import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
 import { db } from "../Login/firebaseConfig";
 import "../Login/Login.css";
 import verified from "../../images/verified.png";
@@ -51,7 +51,7 @@ const LoggedIn = () => {
     }
   };
   useEffect(() => {
-    let newLoggedIn = localStorage.getItem("loginKey")
+    let newLoggedIn = localStorage.getItem("loginKey");
     if (!newLoggedIn) {
       navigate("/", { replace: true });
     } else {
@@ -59,6 +59,12 @@ const LoggedIn = () => {
     }
     getMovieList();
   }, []);
+  //Delete Movies
+  const deleteMovie = async (id) => {
+    const movieDoc = doc(db, "movies", id);
+    await deleteDoc(movieDoc);
+    getMovieList();
+  };
   return (
     <div>
       <h5>LoggedIn as {auth?.currentUser?.email}</h5>
@@ -84,6 +90,7 @@ const LoggedIn = () => {
               )}
             </p>
             <p>Released Date: {movie.releaseDate}</p>
+            <button onClick={() => deleteMovie(movie.id)}>Delete Movie</button>
           </div>
         ))}
       </div>
