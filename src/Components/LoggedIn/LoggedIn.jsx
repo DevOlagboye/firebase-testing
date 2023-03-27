@@ -29,6 +29,7 @@ const LoggedIn = () => {
           duration: 1,
         })
         .then(() => message.success("LogOut Successful", 1))
+        .then(() => localStorage.removeItem("loginKey"))
         .then(() => navigate("/"));
     } catch (err) {
       console.log(err);
@@ -49,14 +50,13 @@ const LoggedIn = () => {
       console.error(err);
     }
   };
-
   useEffect(() => {
-    if (!loggedIn) {
+    let newLoggedIn = localStorage.getItem("loginKey")
+    if (!newLoggedIn) {
       navigate("/", { replace: true });
     } else {
-      console.log(loggedIn);
+      console.log(newLoggedIn);
     }
-    
     getMovieList();
   }, []);
   return (

@@ -44,7 +44,7 @@ const Login = () => {
             duration: 1.5,
           })
           .then(() => message.success("Login Successful", 1.5))
-          .then(() => setLoggedIn(true))
+          .then(() => localStorage.setItem("loginKey", setLoggedIn(true)))
           .then(() => console.log(auth.currentUser.email))
           .then(() => navigate("/loggedIn"));
       })
