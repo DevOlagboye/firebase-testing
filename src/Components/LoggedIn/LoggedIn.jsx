@@ -4,11 +4,18 @@ import { useContext, useEffect, useState } from "react";
 import { signOut, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { UserContext, logInContext } from "../../UserContext";
-import { getDocs, collection, deleteDoc, doc } from "firebase/firestore";
+import {
+  getDocs,
+  collection,
+  deleteDoc,
+  doc,
+  updateDoc,
+} from "firebase/firestore";
 import { db } from "../Login/firebaseConfig";
 import "../Login/Login.css";
 import verified from "../../images/verified.png";
 import nonVerified from "../../images/non-verified.svg";
+import { async } from "@firebase/util";
 
 const LoggedIn = () => {
   let auth = getAuth();
@@ -17,6 +24,8 @@ const LoggedIn = () => {
   const { data, setData } = useContext(UserContext);
   const [loggedIn, setLoggedIn] = useContext(logInContext);
   const [messageApi, contextHolder] = message.useMessage();
+  //Updated Title State
+  const [updatedTitle, setUpdatedTitle] = useState("");
   const navigate = useNavigate();
   const logOut = async () => {
     try {
@@ -65,6 +74,13 @@ const LoggedIn = () => {
     await deleteDoc(movieDoc);
     getMovieList();
   };
+  //Update Docs
+
+  const updateMovieTitle = async (id) => {
+    const movieDoc = doc(db, "movies", id);
+    await updateDoc(movieDoc, { title: updatedTitle });
+    getMovieList();
+  };
   return (
     <div>
       <h5>LoggedIn as {auth?.currentUser?.email}</h5>
@@ -91,6 +107,14 @@ const LoggedIn = () => {
             </p>
             <p>Released Date: {movie.releaseDate}</p>
             <button onClick={() => deleteMovie(movie.id)}>Delete Movie</button>
+            <input
+              type="text"
+              placeholder="New Title"
+              onChange={(e) => setUpdatedTitle(e.target.value)}
+            />
+            <button onClick={() => updateMovieTitle(movie.id)}>
+              Update title
+            </button>
           </div>
         ))}
       </div>
